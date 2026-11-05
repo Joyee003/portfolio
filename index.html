@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joyeta Banerjee · Academic Portfolio</title>
+<meta name="description" content="Joyeta Banerjee: research in affective audio and emotion recognition, first-author IEEE paper, M.Sc. thesis at KUET, and design projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a single reading column like an academic homepage, opened by six stacked waveform tracks that mirror the multi-track research. */
+:root{
+  --bg:#f4f5f2; --surface:#ffffff; --ink:#1b2129; --muted:#5d6670; --rule:#d9ddd6;
+  --accent:#2f6f73; --accent-soft:#e2eeee;
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12161a; --surface:#1a2026; --ink:#e7eae6; --muted:#9aa4ad; --rule:#2b333b;
+    --accent:#7cc3c5; --accent-soft:#1d3335; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12161a; --surface:#1a2026; --ink:#e7eae6; --muted:#9aa4ad; --rule:#2b333b;
+  --accent:#7cc3c5; --accent-soft:#1d3335; color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:400 16.5px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.wrap{width:min(860px, 100% - 40px);margin-inline:auto}
+
+header{padding:56px 0 28px}
+.tracks{display:block;width:100%;height:132px;margin-bottom:30px}
+h1{font:600 clamp(36px,6vw,54px)/1.05 var(--display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+.role{font-size:19px;margin:12px 0 4px;max-width:60ch}
+.aff{color:var(--muted);margin:0}
+.contact{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;font-size:15px}
+.contact span{color:var(--muted)}
+.contact b{font-weight:500;color:var(--ink)}
+
+section{padding:34px 0;border-top:1px solid var(--rule)}
+h2{font:500 12.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+h3{font:600 22px/1.3 var(--display);letter-spacing:-.01em;margin:0 0 8px;text-wrap:balance}
+p{margin:0 0 12px;max-width:68ch}
+.lede{font-size:18px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.chips li{background:var(--accent-soft);color:var(--ink);border-radius:999px;padding:5px 13px;font-size:14.5px}
+
+.pub{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:6px;padding:22px 24px}
+.pub .meta{font:400 13px/1.5 var(--mono);color:var(--muted);margin-bottom:10px;display:flex;flex-wrap:wrap;gap:6px 16px}
+.pub .meta b{color:var(--accent);font-weight:500}
+.authors{margin-bottom:4px}
+.venue{color:var(--muted);font-size:15px}
+.btn{display:inline-block;margin-top:6px;padding:9px 16px;border-radius:6px;background:var(--accent);color:var(--bg);text-decoration:none;font-weight:500;font-size:15px}
+.btn:hover{filter:brightness(1.08)}
+
+.flow{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;counter-reset:step}
+.flow li{border-top:2px solid var(--accent);padding-top:10px;font-size:14.5px;color:var(--muted)}
+.flow b{display:block;color:var(--ink);font-weight:600;font-size:15px}
+.flow li::before{counter-increment:step;content:"0" counter(step);font:500 12px/1 var(--mono);color:var(--accent);display:block;margin-bottom:6px}
+
+.tablewrap{overflow-x:auto;margin-top:22px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:520px}
+caption{text-align:left;font:500 12.5px/1.4 var(--mono);color:var(--muted);padding-bottom:8px;letter-spacing:.04em}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{font-weight:600;font-size:13.5px;color:var(--muted)}
+td.emo{color:var(--accent);font-weight:500}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.stats div{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:14px 16px}
+.stats b{display:block;font:600 26px/1.1 var(--display);color:var(--accent);font-variant-numeric:tabular-nums}
+.stats span{font-size:14px;color:var(--muted)}
+
+.cols{display:grid;grid-template-columns:150px 1fr;gap:6px 22px}
+.cols dt{font-weight:600}
+.cols dd{margin:0 0 10px;color:var(--muted)}
+.edu{display:grid;gap:14px}
+.edu div b{display:block}
+.edu div span{color:var(--muted)}
+
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.case{background:var(--surface);border:1px solid var(--rule);border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+.case.feat{grid-column:1 / -1;flex-direction:row}
+.case img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:left center;background:var(--rule)}
+.case.feat img{width:52%;aspect-ratio:auto}
+.case-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:2px;flex:1}
+.case-body p{font-size:15px;color:var(--muted);margin:4px 0 10px}
+.case-body h3{margin:4px 0 0}
+.kind{font:500 12px/1.4 var(--mono);color:var(--accent);letter-spacing:.04em}
+.tags{list-style:none;padding:0;margin:0 0 12px;display:flex;flex-wrap:wrap;gap:6px}
+.tags li{font-size:13px;border:1px solid var(--rule);border-radius:999px;padding:2px 10px;color:var(--muted)}
+.case-body a{margin-top:auto;font-weight:500;font-size:15px}
+footer{padding:28px 0 56px;border-top:1px solid var(--rule);color:var(--muted);font-size:14px}
+
+@media (max-width:700px){
+  .cases{grid-template-columns:1fr}
+  .case.feat{flex-direction:column}
+  .case.feat img{width:100%;aspect-ratio:16/10}
+  .flow{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  .cols dd{margin-bottom:14px}
+  header{padding-top:36px}
+  .tracks{height:104px}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <canvas class="tracks" id="tracks" aria-hidden="true"></canvas>
+  <h1>Joyeta Banerjee</h1>
+  <p class="role">Researcher in affective audio and emotion-aware media</p>
+  <p class="aff">M.Sc. (Engg.) Researcher · Institute of Information and Communication Technology, Khulna University of Engineering &amp; Technology (KUET), Bangladesh</p>
+  <div class="contact">
+    <span><b>Email</b> banerjeejoyee3@gmail.com</span>
+    <a href="https://www.linkedin.com/in/joyeta-banerjee">LinkedIn</a>
+    <a href="https://ieeexplore.ieee.org/document/11381614">IEEE Xplore</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section aria-labelledby="about">
+    <h2 id="about">About</h2>
+    <p class="lede">I study how machines can perceive emotion in sound. My M.Sc. research fuses time-aligned speech and instrumental tracks to recognise emotion in Bangla recited poetry and music, a setting where existing emotion datasets and models are scarce.</p>
+    <p>Before research I spent two years in UX design and product leadership. That work taught me to start from how people actually experience a system, and I bring the same approach to designing annotation studies and emotion-aware interfaces.</p>
+  </section>
+
+  <section aria-labelledby="interests">
+    <h2 id="interests">Research interests</h2>
+    <ul class="chips">
+      <li>Affective computing</li>
+      <li>Speech and music emotion recognition</li>
+      <li>Multimodal and multi-track fusion</li>
+      <li>Emotion-aware immersive experiences</li>
+      <li>Sonification and affective audio</li>
+      <li>Human perception and annotation of emotion</li>
+      <li>Low-resource languages</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="pubs">
+    <h2 id="pubs">Publication</h2>
+    <article class="pub">
+      <div class="meta"><b>Peer-reviewed · First author</b><span>IEEE COMPAS 2025</span><span>Kushtia, Bangladesh · October 2025</span></div>
+      <h3>Multi-Track Audio Fusion for Emotion Recognition Using Machine and Deep Learning Techniques</h3>
+      <p class="authors"><strong>Joyeta Banerjee</strong>, Mohiuddin Ahmad, Tahmida Tabassum</p>
+      <p class="venue">2025 IEEE 2nd International Conference on Computing, Applications and Systems (COMPAS)</p>
+      <p>Single-track systems miss much of the emotional nuance in real recordings. Working with Bangla song recordings, the paper extracts MFCC, spectral and temporal features, fuses them at feature level, and compares a convolutional neural network against SVM, Random Forest and CatBoost classifiers.</p>
+      <a class="btn" href="https://ieeexplore.ieee.org/document/11381614">Read on IEEE Xplore</a>
+    </article>
+  </section>
+
+  <section aria-labelledby="current">
+    <h2 id="current">Current research · M.Sc. thesis</h2>
+    <h3>Multi-Track Audio Fusion for Emotion Recognition in Bangla Poetry and Instrumental Music</h3>
+    <p>Supervised by Prof. Dr. Mohiuddin Ahmad, Department of Electrical and Electronic Engineering, KUET. Expected completion: December 2026.</p>
+    <p>In a recited poem the voice carries prosody, while the music around it adds timbre, rhythm and harmony. The thesis asks how much these non-vocal cues add to emotion recognition, using a corpus that pairs Bangla poetic speech with instrumental music for the first time.</p>
+
+    <ol class="flow" aria-label="Research pipeline">
+      <li><b>Record</b>Studio poetry and five instruments</li>
+      <li><b>Annotate</b>Three raters, Fleiss' κ ≥ 0.61</li>
+      <li><b>Align</b>DTW alignment, leakage-safe splits</li>
+      <li><b>Fuse</b>MFCC, spectral and temporal features</li>
+      <li><b>Classify</b>CNN against classical models</li>
+    </ol>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Seed corpus: one recited poem and five instrumental versions of the song "Tumi Robe Nirobe"</caption>
+        <thead><tr><th>Track</th><th>Type</th><th>Emotion label</th></tr></thead>
+        <tbody>
+          <tr><td>Bangla poem recitation</td><td>Speech</td><td class="emo">Neutral</td></tr>
+          <tr><td>Flute</td><td>Instrumental</td><td class="emo">Calm</td></tr>
+          <tr><td>Harmonica</td><td>Instrumental</td><td class="emo">Sad</td></tr>
+          <tr><td>Guitar</td><td>Instrumental</td><td class="emo">Reflective</td></tr>
+          <tr><td>Sarod</td><td>Instrumental</td><td class="emo">Devotional</td></tr>
+          <tr><td>Piano</td><td>Instrumental</td><td class="emo">Peaceful</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stats">
+      <div><b>~170</b><span>recordings planned in the expanded corpus</span></div>
+      <div><b>~15,000</b><span>clips from 3 s windows with 1.5 s hop</span></div>
+      <div><b>6</b><span>emotion classes, with valence–arousal ratings</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="methods">
+    <h2 id="methods">Methods and tools</h2>
+    <dl class="cols">
+      <dt>Audio analysis</dt><dd>STFT, MFCC, spectral centroid and bandwidth, zero-crossing rate, RMS energy, DTW alignment, stem separation</dd>
+      <dt>Machine learning</dt><dd>CNNs, SVM, Random Forest, CatBoost, feature-level fusion, augmentation, cross-validation, macro-F1, ROC-AUC</dd>
+      <dt>Human studies</dt><dd>Annotation protocols, inter-rater reliability (Fleiss' and Cohen's κ), valence–arousal ratings, user interviews, usability evaluation</dd>
+      <dt>Tools</dt><dd>Python, librosa, scikit-learn, PyTorch, Git</dd>
+    </dl>
+  </section>
+
+  <section aria-labelledby="design">
+    <h2 id="design">Design and HCI projects</h2>
+    <p>Alongside research I design interactive products end to end, from user interviews and journey maps to design systems and clickable prototypes. MoodBrew is the closest to my research: it turns a user's reported mood into a recommendation and explains the reasoning.</p>
+    <div class="cases">
+      <article class="case feat">
+        <img src="assets/moodbrew-thumb.jpg" alt="MoodBrew cover with app screens" loading="lazy" width="640" height="400">
+        <div class="case-body">
+          <span class="kind">Emotion-aware mobile app · Concept project</span>
+          <h3>MoodBrew</h3>
+          <p>An emotion-aware coffee app that recommends what to drink based on how you feel, and explains why. Includes a mood-to-recommendation logic table, journey map with an emotion curve, and an 8-screen prototype.</p>
+          <ul class="tags"><li>UX research</li><li>Emotion-aware design</li><li>Journey map</li><li>Prototype</li></ul>
+          <a href="https://www.figma.com/proto/5BtLWG4gRtr6r6JCMc1cQw/Portfolio?node-id=118-930&amp;starting-point-node-id=118-930&amp;page-id=2-2&amp;scaling=scale-down&amp;content-scaling=fixed">Open the Figma prototype</a>
+        </div>
+      </article>
+      <article class="case">
+        <img src="assets/shuddhi-thumb.jpg" alt="Shuddhi cover with app screens" loading="lazy" width="640" height="400">
+        <div class="case-body">
+          <span class="kind">Responsive e-commerce website · Concept project</span>
+          <h3>Shuddhi</h3>
+          <p>A skincare store for Bangladesh built around trust: a skin quiz that builds a routine, product pages that prove authenticity, one-page checkout and reorder reminders.</p>
+          <ul class="tags"><li>Persona research</li><li>Design system</li><li>Responsive web</li></ul>
+          <a href="https://www.figma.com/proto/5BtLWG4gRtr6r6JCMc1cQw/Portfolio?node-id=72-1489&amp;starting-point-node-id=72-1489&amp;page-id=61-1033&amp;scaling=scale-down-width&amp;content-scaling=fixed">Open the Figma prototype</a>
+        </div>
+      </article>
+      <article class="case">
+        <img src="assets/shonchoy-thumb.jpg" alt="Shonchoy cover with app screens" loading="lazy" width="640" height="400">
+        <div class="case-body">
+          <span class="kind">Fintech mobile app · Concept project</span>
+          <h3>Shonchoy</h3>
+          <p>A safer banking app: bank-verified names, fees shown before sending, plain-language errors, a scam-call pause and a 10-minute undo.</p>
+          <ul class="tags"><li>Trust &amp; safety</li><li>Accessibility</li><li>Prototype</li></ul>
+          <a href="https://www.figma.com/proto/5BtLWG4gRtr6r6JCMc1cQw/Portfolio?node-id=131-758&amp;starting-point-node-id=131-758&amp;page-id=2-5&amp;scaling=scale-down&amp;content-scaling=fixed">Open the Figma prototype</a>
+        </div>
+      </article>
+      <article class="case">
+        <img src="assets/nexa-thumb.jpg" alt="Nexa One cover with app screens" loading="lazy" width="640" height="400">
+        <div class="case-body">
+          <span class="kind">B2B SaaS workspace · Concept project</span>
+          <h3>Nexa One</h3>
+          <p>Six business tools for Bangladeshi SMEs in one workspace, designed from eight everyday problems, each with a hypothesis and a success metric.</p>
+          <ul class="tags"><li>Hypothesis-driven</li><li>Dashboards</li><li>RICE</li></ul>
+          <a href="https://www.figma.com/proto/5BtLWG4gRtr6r6JCMc1cQw/Portfolio?node-id=21-434&amp;starting-point-node-id=21-434&amp;page-id=2-4&amp;scaling=scale-down-width&amp;content-scaling=fixed">Open the Figma prototype</a>
+        </div>
+      </article>
+      <article class="case">
+        <img src="assets/pathshala-thumb.jpg" alt="Pathshala cover with app screens" loading="lazy" width="640" height="400">
+        <div class="case-body">
+          <span class="kind">Bilingual learning app · Concept project</span>
+          <h3>Pathshala</h3>
+          <p>A Bangla and English learning app for Class 6–10 students, with a lesson, practice and progress loop for low-data users.</p>
+          <ul class="tags"><li>EdTech</li><li>Bilingual UI</li><li>Android-first</li></ul>
+          <a href="https://www.figma.com/proto/5BtLWG4gRtr6r6JCMc1cQw/Portfolio?node-id=31-189&amp;starting-point-node-id=31-189&amp;page-id=2-6&amp;scaling=scale-down&amp;content-scaling=fixed">Open the Figma prototype</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="edu">
+    <h2 id="edu">Education</h2>
+    <div class="edu">
+      <div><b>M.Sc. (Engg.) in Information and Communication Technology</b><span>Khulna University of Engineering &amp; Technology (KUET)</span></div>
+      <div><b>B.Sc. (Engg.) in Computer Science and Engineering</b><span>Northern University of Business and Technology Khulna</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  Joyeta Banerjee · Khulna, Bangladesh · Open to PhD positions in affective computing, audio and human-centred AI.
+</footer>
+
+<script>
+(function(){
+  var c = document.getElementById('tracks');
+  if (!c || !c.getContext) return;
+  function draw(){
+    var dpr = window.devicePixelRatio || 1;
+    var w = c.clientWidth, h = c.clientHeight;
+    c.width = w * dpr; c.height = h * dpr;
+    var ctx = c.getContext('2d');
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,w,h);
+    var cs = getComputedStyle(document.documentElement);
+    var accent = cs.getPropertyValue('--accent').trim() || '#2f6f73';
+    var rule = cs.getPropertyValue('--rule').trim() || '#d9ddd6';
+    var rows = 6, gap = h / rows;
+    // deterministic pseudo-random so the picture is the same on every load
+    var seed = 7;
+    function rnd(){ seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+    for (var r = 0; r < rows; r++){
+      var mid = gap * r + gap / 2;
+      ctx.strokeStyle = rule; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(w, mid); ctx.stroke();
+      ctx.fillStyle = accent;
+      ctx.globalAlpha = r === 0 ? 0.95 : 0.35 + 0.08 * (rows - r);
+      var bars = Math.floor(w / 4);
+      var freq = 0.02 + r * 0.011, phase = r * 1.7;
+      for (var i = 0; i < bars; i++){
+        var env = 0.35 + 0.65 * Math.abs(Math.sin(i * freq + phase));
+        var amp = (gap * 0.42) * env * (0.45 + 0.55 * rnd());
+        ctx.fillRect(i * 4, mid - amp, 2, amp * 2);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+  draw();
+  window.addEventListener('resize', draw);
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', draw);
+  }
+})();
+</script>
+</body>
+</html>
